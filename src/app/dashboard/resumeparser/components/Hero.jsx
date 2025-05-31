@@ -1,7 +1,7 @@
 "use client"
 import React from 'react'
 import Image from 'next/image'
-import Upload from "C:/Users/Dell/Desktop/Python/HireAi/hire-ai/public/Upload.gif"
+import Upload from "../../../../../public/Upload.gif"
 import { ReactTyped } from 'react-typed'
 
 const Hero = () => {
