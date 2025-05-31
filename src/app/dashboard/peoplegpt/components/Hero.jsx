@@ -11,8 +11,9 @@ const Hero = () => {
             <p className='text-lg'>AI Powered Recruitment</p>
           </div>
           <div className='flex flex-col mt-20'>
-            <a href='/' className='text-2xl font-extrabold bg-gray-500 rounded-2xl p-3 text-gray-300 mb-5'>PeopleGPT</a>
-            <a href='/' className='text-2xl font-extrabold bg-gray-700 rounded-2xl p-3 text-gray-300'>Resume Parser</a>
+            <a href='/dashboard' className='text-2xl font-extrabold bg-gray-700 rounded-2xl p-3 text-gray-300 mb-5'>Dashboard</a>
+            <a href='/dashboard/peoplegpt' className='text-2xl font-extrabold bg-gray-500 rounded-2xl p-3 text-gray-300 mb-5'>PeopleGPT</a>
+            <a href='/dashboard/resumeparser' className='text-2xl font-extrabold bg-gray-700 rounded-2xl p-3 text-gray-300'>Resume Parser</a>
           </div>
         </div>
         
