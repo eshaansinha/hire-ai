@@ -7,8 +7,8 @@ const Hero = () => {
       <div className='flex flex-row min-h-screen'>
         <div className='bg-gray-600 text-gray-300 w-[250px] p-5 flex flex-col'>
           <div>
-            <h1 className='text-4xl font-extrabold'>Hire AI</h1>
-            <p className='text-lg'>AI Powered Recruitment</p>
+            <h1 className='text-4xl font-extrabold text-teal-300'>Hire AI</h1>
+            <p className='text-lg text-teal-300'>AI Powered Recruitment</p>
           </div>
           <div className='flex flex-col mt-20'>
             <a href='/dashboard' className='text-2xl font-extrabold bg-gray-700 rounded-2xl p-3 text-gray-300 mb-5'>Dashboard</a>
