@@ -32,12 +32,13 @@ const Hero = () => {
             <a href='/dashboard/peoplegpt' className='text-2xl font-extrabold bg-gray-700 rounded-2xl p-3 text-gray-300 mb-5'>PeopleGPT</a>
             <a href='/dashboard/resumeparser' className='text-2xl font-extrabold bg-gray-700 rounded-2xl p-3 text-gray-300'>Resume Parser</a>
             <a href='/dashboard/generatequestions' className='text-2xl font-extrabold bg-gray-500 rounded-2xl p-3 text-gray-300 mt-5'>Ai Questions</a>
+            <a href='/dashboard/outreach' className='text-2xl font-extrabold bg-gray-700 rounded-2xl p-3 text-gray-300 mt-5'>Outreach</a>
           </div>
         </div>
         
         <div className='flex-1 flex flex-col bg-gray-700'>
           <div className='flex flex-row justify-between items-center px-5 py-4 border-b border-gray-200'>
-            <h1 className='text-2xl md:text-4xl font-extrabold text-gray-300'>PeopleGPT</h1>
+            <h1 className='text-2xl md:text-4xl font-extrabold text-gray-300'>Ai Test</h1>
             <button className='text-lg md:text-xl font-extrabold text-gray-300 bg-gray-600 p-3 rounded-2xl'>
               SignOut
             </button>
