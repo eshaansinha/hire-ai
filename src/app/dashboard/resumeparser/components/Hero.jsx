@@ -87,7 +87,7 @@ const Hero = () => {
           <div className='flex-1 overflow-y-auto bg-gray-700'>
             <div className='p-5 md:p-10 lg:p-12'>
                 <div className='bg-gray-300 rounded-2xl ml-10 mr-10'>
-                    <div className='flex flex-col justify-center gap-5 items-center p-10'>
+                    <div className='flex flex-col justify-center gap-5 items-center p-5'>
                         <Image src={Upload} alt={"Upload Image"} width={150} height={100} className='rounded-2xl'/>
                         <h1 className='text-3xl text-gray-700 font-bold'>Upload a resume to get started</h1>
                         <p className='text-xl'>Supports PDF, DOC, DOCX</p>
@@ -114,7 +114,7 @@ const Hero = () => {
                         {/* Upload button */}
                         <button 
                           onClick={handleUpload} 
-                          className='bg-gray-700 text-gray-300 font-bold p-3 text-lg rounded-2xl mt-4 cursor-pointer disabled:bg-gray-500 disabled:cursor-not-allowed'
+                          className='bg-gray-700 text-gray-300 font-bold p-3 text-lg rounded-2xl mt-2 cursor-pointer disabled:bg-gray-500 disabled:cursor-not-allowed'
                           disabled={!selectedFile || isLoading}
                         >
                           {isLoading ? 'Parsing...' : 'Upload and Parse'}

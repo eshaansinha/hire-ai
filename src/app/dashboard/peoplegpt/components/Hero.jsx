@@ -53,11 +53,11 @@ const Hero = () => {
               </div>
               <div className='mt-10'>
                 <h1 className='text-4xl text-gray-300 font-extrabold'>Search Results</h1>
-                <div className='grid grid-cols-3 mt-10 gap-5'>
+                <div className='grid grid-cols-3 mt-10 gap-3'>
         {results.length > 0 ? (
           results.map((item, index) => (
-            <div key={index} className='bg-gray-300 text-gray-700 rounded-2xl p-5 font-bold'>
-              <h1 className='text-3xl bg-gray-700 text-gray-300 text-center rounded-2xl p-2 mb-3'>{item.candidate.name}</h1>
+            <div key={index} className='bg-gray-300 text-gray-700 rounded-2xl p-3 font-bold'>
+              <h1 className='text-2xl bg-gray-700 text-gray-300 text-center rounded-2xl p-2 mb-3'>{item.candidate.name}</h1>
               <p className='mb-2'>Location : {item.candidate.location || 'N/A'}</p>
               <p className='mb-2'>Experience : {item.candidate.experience_years} years</p>
               <p className='mb-2'>Email : {item.candidate.email || 'N/A'}</p>
@@ -68,7 +68,7 @@ const Hero = () => {
             </div>
           ))
         ) : (
-          <p className='text-gray-400'>Loading results...</p>
+          <p className='text-gray-400'>Loading/Waiting for results...</p>
         )}
                 </div>
               </div>
