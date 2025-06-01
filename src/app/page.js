@@ -1,9 +1,10 @@
+import Landing from "./components/Hero";
 
 
 export default function Home() {
   return (
     <div>
-      <h1>This is home</h1>
+      <Landing />
     </div>
   );
 }
