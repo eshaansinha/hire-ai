@@ -1,5 +1,6 @@
 "use client"
 import { signIn, signOut, useSession } from 'next-auth/react'
+import { useRouter } from 'next/navigation'
 import React, { useDeferredValue, useEffect, useState } from 'react'
 
 const Dashboard = () => {
@@ -9,6 +10,7 @@ const Dashboard = () => {
   const [loading, setLoading] = useState(false)
   const [runningCamp, setRunningCamp] = useState("0") // Initialize with "0"
   const [totalCan, setTotalCan] = useState("0")
+  const router = useRouter()
 
   useEffect(() => {
     const registerUser = async () => {
@@ -124,6 +126,7 @@ const Dashboard = () => {
   
   if (status === "unauthenticated") {
       signIn()
+      router.push("/dashboard")
   }
 
   if (status === "authenticated") {
