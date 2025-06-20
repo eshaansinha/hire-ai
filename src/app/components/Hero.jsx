@@ -9,22 +9,22 @@ const Landing = () => {
     const { data:session, status } = useSession()
     const router = useRouter()
 
-    if (status === "loading") {
-        return (
-            <div className='h-screen flex text-3xl'>
-                <h1>Loading...</h1>
-            </div>
-        )
-    }
+    // if (status === "loading") {
+    //     return (
+    //         <div className='h-screen flex text-3xl'>
+    //             <h1>Loading...</h1>
+    //         </div>
+    //     )
+    // }
     const handlesignin = () => {
     
     const checkStatus = () => {
         if (status === "unauthenticated") {
-            signIn()
+            signIn(undefined, { callbackUrl: '/dashboard' })
         }
     }
     checkStatus()
-    
+
     router.push("/dashboard")
     }
 
