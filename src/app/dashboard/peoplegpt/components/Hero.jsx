@@ -1,28 +1,48 @@
 "use client"
+import { signIn, signOut, useSession } from 'next-auth/react'
 import React, { useEffect, useState } from 'react'
 
 const Hero = () => {
 
   const [searchQuery, setSearchQuery] = useState("")
   const [results, setResults] = useState([])
+  const { data:session, status } = useSession()
 
   const retrivePeople = async() => {
-    const response = await fetch("https://hire-ai-backend-wcrk.onrender.com/api/peoplegpt", {
+    const response = await fetch(`https://hire-ai-backend-wcrk.onrender.com/api/peoplegpt?max_results=10`, {
     method: "POST",
     headers: {
-      "Content-Type": "application/json",
+      "Content-type" : "application/json",
+      "x-user-email" : session.user.email
     },
     body: JSON.stringify({
       query: searchQuery,    // sending the user's search query
-      max_results: 10        // limit to 10 results (adjust as needed)
     }),
   });
     const data = await response.json()
 
+    if (data.results.length === 0) {
+      alert("Please upload at least 1 resume to find candidates.");
+    }
+    
     setResults(data.results)
-    // alert(JSON.stringify(data))
+    //alert(JSON.stringify(data))
+  
   }
 
+  if (status === "loading") {
+          return (
+              <div className='h-screen flex text-3xl'>
+                  <h1>Loading...</h1>
+              </div>
+          )
+      }
+  
+  if (status === "unauthenticated") {
+      signIn()
+  }
+
+  if (status === "authenticated") {
   return (
     <div className='bg-gray-400 min-h-screen'>
       <div className='flex flex-row min-h-screen'>
@@ -43,7 +63,7 @@ const Hero = () => {
         <div className='flex-1 flex flex-col bg-gray-700'>
           <div className='flex flex-row justify-between items-center px-5 py-4 border-b border-gray-200'>
             <h1 className='text-2xl md:text-4xl font-extrabold text-gray-300'>PeopleGPT</h1>
-            <button className='text-lg md:text-xl font-extrabold text-gray-300 bg-gray-600 p-3 rounded-2xl'>
+            <button onClick={() => {signOut()}}className='text-lg md:text-xl font-extrabold text-gray-300 bg-gray-600 p-3 rounded-2xl hover:translate-y-1 transition duration-300 active:translate-y-0.5'>
               SignOut
             </button>
           </div>
@@ -65,8 +85,8 @@ const Hero = () => {
               <p className='mb-2'>Email : {item.candidate.email || 'N/A'}</p>
               <p className='mb-2'>Phone : {item.candidate.phone || 'N/A'}</p>
               <p className='mb-2'>Resume : {item.candidate.resume_filename || 'N/A'}</p>
-              <p>Skills : {item.candidate.skills.join(', ')}</p>
-              <p>Match Score : {item.match_score}%</p>
+              <p className='mb-2'>Skills : {item.candidate.skills.join(', ')}</p>
+              <p className='mb-2'>Match Score : {item.match_score}%</p>
             </div>
           ))
         ) : (
@@ -80,6 +100,7 @@ const Hero = () => {
       </div>
     </div>
   )
+}
 }
 
 export default Hero

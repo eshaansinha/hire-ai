@@ -3,12 +3,14 @@ import React, { useState } from 'react';
 import Image from 'next/image';
 import Upload from "../../../../../public/Upload.gif";
 import { ReactTyped } from 'react-typed';
+import { signIn, signOut, useSession } from 'next-auth/react';
 
 const Hero = () => {
   const [selectedFile, setSelectedFile] = useState(null);
   const [parsingResult, setParsingResult] = useState("");
   const [error, setError] = useState("");
   const [isLoading, setIsLoading] = useState(false);
+  const { data:session, status } = useSession()
 
   const handleFileChange = (event) => {
     // Reset state when a new file is chosen
@@ -16,6 +18,18 @@ const Hero = () => {
     setParsingResult("");
     setError("");
   };
+
+  if (status === "loading") {
+          return (
+              <div className='h-screen flex text-3xl'>
+                  <h1>Loading...</h1>
+              </div>
+          )
+      }
+  
+  if (status === "unauthenticated") {
+      signIn()
+  }
 
   const handleUpload = async () => {
     if (!selectedFile) {
@@ -35,14 +49,16 @@ const Hero = () => {
       // Ensure this URL is correct for your running backend
       const response = await fetch('https://hire-ai-backend-wcrk.onrender.com/api/candidates/upload-resume', {
         method: 'POST',
-        body: formData,
-        // Headers are not strictly necessary for FormData with fetch,
-        // as the browser sets the correct 'multipart/form-data' boundary.
+        headers: {
+          'x-user-email': session.user.email,  // Using the email from your session
+          // 'Authorization': `Bearer ${session.accessToken}`, // Add if needed
+        },
+        body: formData
       });
 
       const result = await response.json();
 
-      alert(JSON.stringify(result))
+      // alert(JSON.stringify(result))
 
       if (!response.ok) {
         // Handle validation errors (422) or other server errors
@@ -62,6 +78,7 @@ const Hero = () => {
       setIsLoading(false);
     }
   };
+
 
   return (
     <div className='bg-gray-400 min-h-screen'>
@@ -85,7 +102,7 @@ const Hero = () => {
           {/* Header remains the same */}
           <div className='flex flex-row justify-between items-center px-5 py-4 border-b border-gray-200'>
             <h1 className='text-2xl md:text-4xl font-extrabold text-gray-300'>Resume Parser</h1>
-            <button className='text-lg md:text-xl font-extrabold text-gray-300 bg-gray-600 p-3 rounded-2xl'>SignOut</button>
+            <button onClick={() => {signOut()}}className='text-lg md:text-xl font-extrabold text-gray-300 bg-gray-600 p-3 rounded-2xl hover:translate-y-1 transition duration-300 active:translate-y-0.5'>SignOut</button>
           </div>
           
           <div className='flex-1 overflow-y-auto bg-gray-700'>

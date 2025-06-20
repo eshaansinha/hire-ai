@@ -1,10 +1,12 @@
 "use client"
+import { signIn, signOut, useSession } from 'next-auth/react'
 import React, { useEffect, useState } from 'react'
 
 const Hero = () => {
 
   const [searchQuery, setSearchQuery] = useState("")
   const [results, setResults] = useState([])
+  const { data:session, status } = useSession()
 
   const retrivePeople = async() => {
     const response = await fetch(`https://hire-ai-backend-wcrk.onrender.com/api/peoplegpt/generate-questions?job_requirements=${searchQuery}`, {
@@ -19,6 +21,19 @@ const Hero = () => {
     // alert(JSON.stringify(data))
   }
 
+  if (status === "loading") {
+          return (
+              <div className='h-screen flex text-3xl'>
+                  <h1>Loading...</h1>
+              </div>
+          )
+      }
+  
+  if (status === "unauthenticated") {
+      signIn()
+  }
+
+  if (status === "authenticated") {
   return (
     <div className='bg-gray-400 min-h-screen'>
       <div className='flex flex-row min-h-screen'>
@@ -39,7 +54,7 @@ const Hero = () => {
         <div className='flex-1 flex flex-col bg-gray-700'>
           <div className='flex flex-row justify-between items-center px-5 py-4 border-b border-gray-200'>
             <h1 className='text-2xl md:text-4xl font-extrabold text-gray-300'>Ai Test</h1>
-            <button className='text-lg md:text-xl font-extrabold text-gray-300 bg-gray-600 p-3 rounded-2xl'>
+            <button onClick={() => {signOut()}}className='text-lg md:text-xl font-extrabold text-gray-300 bg-gray-600 p-3 rounded-2xl hover:translate-y-1 transition duration-300 active:translate-y-0.5'>
               SignOut
             </button>
           </div>
@@ -70,6 +85,7 @@ const Hero = () => {
       </div>
     </div>
   )
+}
 }
 
 export default Hero
