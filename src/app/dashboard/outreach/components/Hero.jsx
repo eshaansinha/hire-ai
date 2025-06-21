@@ -22,9 +22,10 @@ const Hero = () => {
       if (status === "authenticated" && session?.user?.email) {
         const fetchCandidates = async () => {
           try {
-            const response = await fetch('https://hire-ai-backend-wcrk.onrender.com/api/candidates', {
+            const response = await fetch('https://hire-ai-service-856911069227.us-central1.run.app/api/candidates', {
               method : "GET",
               headers: {
+              "Accept": "application/json",
               "Content-type" : "application/json",
               'x-user-email': session.user.email,  // Now safe to access
               // 'Authorization': `Bearer ${session.accessToken}`, // Add if needed
@@ -41,7 +42,7 @@ const Hero = () => {
 
       const fetchCampaigns = async () => {
         try {
-          const response = await fetch('https://hire-ai-backend-wcrk.onrender.com/api/outreach/campaigns', {
+          const response = await fetch('https://hire-ai-service-856911069227.us-central1.run.app/api/outreach/campaigns', {
             method: "GET",
             headers: {
               "Content-Type": "application/json",
@@ -81,13 +82,13 @@ const Hero = () => {
   setLaunch(true);
 
   try {
-    alert(JSON.stringify({
-        campaign_name: cname,
-        job_title: jobtitle,
-        company_name: compname,
-        target_candidate_ids: selectedCandidates
-      }))
-    const response = await fetch("https://hire-ai-backend-wcrk.onrender.com/api/outreach/campaigns", {
+    // alert(JSON.stringify({
+    //     campaign_name: cname,
+    //     job_title: jobtitle,
+    //     company_name: compname,
+    //     target_candidate_ids: selectedCandidates
+    //   }))
+    const response = await fetch("https://hire-ai-service-856911069227.us-central1.run.app/api/outreach/campaigns", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -281,7 +282,7 @@ recruiter_name</p></div>
                                   if (!template) return;
 
                                   try {
-                                    const res = await fetch(`https://hire-ai-backend-wcrk.onrender.com/api/outreach/campaigns/${campaign.id}/send`, {
+                                    const res = await fetch(`https://hire-ai-service-856911069227.us-central1.run.app/api/outreach/campaigns/${campaign.id}/send`, {
                                       method: 'POST',
                                       headers: {
                                         'Content-Type': 'application/json',

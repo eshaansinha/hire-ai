@@ -9,7 +9,7 @@ const Hero = () => {
   const { data:session, status } = useSession()
 
   const retrivePeople = async() => {
-    const response = await fetch(`https://hire-ai-backend-wcrk.onrender.com/api/peoplegpt/generate-questions?job_requirements=${searchQuery}`, {
+    const response = await fetch(`https://hire-ai-service-856911069227.us-central1.run.app/api/peoplegpt/generate-questions?job_requirements=${searchQuery}`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",

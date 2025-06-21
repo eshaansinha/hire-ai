@@ -47,7 +47,7 @@ const Hero = () => {
 
     try {
       // Ensure this URL is correct for your running backend
-      const response = await fetch('https://hire-ai-backend-wcrk.onrender.com/api/candidates/upload-resume', {
+      const response = await fetch('https://hire-ai-service-856911069227.us-central1.run.app/api/candidates/upload-resume', {
         method: 'POST',
         headers: {
           'x-user-email': session.user.email,  // Using the email from your session
@@ -67,8 +67,11 @@ const Hero = () => {
       }
       
       // **Process the successful (200) response based on the new schema**
-      const { name, email, phone, skills, experience_years, location } = result;
-      const formattedResult = `Name: ${name} | Email: ${email} | Phone: ${phone} | Location: ${location} | Experience: ${experience_years} years | Skills: ${skills.join(', ')}`;
+      const candidate = result.candidate;
+      const { name, email, phone, skills, experience_years, location } = candidate;
+
+      const formattedResult = `Name: ${name || "N/A"} | Email: ${email || "N/A"} | Phone: ${phone || "N/A"} | Location: ${location || "N/A"} | Experience: ${experience_years || "0"} years | Skills: ${Array.isArray(skills) ? skills.join(', ') : "N/A"}`;
+
       setParsingResult(formattedResult);
 
     } catch (err) {
