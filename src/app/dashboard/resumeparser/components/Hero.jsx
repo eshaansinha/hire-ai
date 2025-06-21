@@ -47,7 +47,7 @@ const Hero = () => {
 
     try {
       // Ensure this URL is correct for your running backend
-      const response = await fetch('https://hire-ai-service-856911069227.us-central1.run.app/api/candidates/upload-resume', {
+      const response = await fetch('https://hire-ai-backend-wcrk.onrender.com/api/candidates/upload-resume', {
         method: 'POST',
         headers: {
           'x-user-email': session.user.email,  // Using the email from your session

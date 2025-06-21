@@ -25,6 +25,9 @@ const Landing = () => {
     }
     checkStatus()
 
+    // const res = await fetch("https://hire-ai-service-856911069227.us-central1.run.app/health")
+    // const req = res.json()
+    // alert(req)
     router.push("/dashboard")
     }
 

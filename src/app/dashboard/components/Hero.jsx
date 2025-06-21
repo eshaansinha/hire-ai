@@ -16,7 +16,7 @@ const Dashboard = () => {
     const registerUser = async () => {
       if (status === "authenticated" && session?.user?.email) {
         try {
-          const response = await fetch(`https://hire-ai-service-856911069227.us-central1.run.app/api/users/register`, {
+          const response = await fetch(`https://hire-ai-backend-wcrk.onrender.com/api/users/register`, {
             method: "POST",
             headers : {
               "Content-Type" : "application/json"
@@ -46,7 +46,7 @@ const Dashboard = () => {
         
         try{
           // Fetch resumes data
-          const resumeRes = await fetch(`https://hire-ai-service-856911069227.us-central1.run.app/api/v1/analytics/users/${session.user.email}/resumes_uploaded`, {
+          const resumeRes = await fetch(`https://hire-ai-backend-wcrk.onrender.com/api/v1/analytics/users/${session.user.email}/resumes_uploaded`, {
             headers : {
               "Content-type" : "application/json"
             }
@@ -71,7 +71,7 @@ const Dashboard = () => {
           }
 
           // Fetch campaigns data
-          const campaignRes = await fetch(`https://hire-ai-service-856911069227.us-central1.run.app/api/v1/analytics/users/${session.user.email}/campaigns`, {
+          const campaignRes = await fetch(`https://hire-ai-backend-wcrk.onrender.com/api/v1/analytics/users/${session.user.email}/campaigns`, {
             headers : {
               "Content-type" : "application/json"
             }
@@ -95,7 +95,7 @@ const Dashboard = () => {
             setRunningCamp("0")
           }
 
-          const totalCandidatesReq = await fetch(`https://hire-ai-service-856911069227.us-central1.run.app/api/v1/analytics/users/${session.user.email}/candidates/summary`)
+          const totalCandidatesReq = await fetch(`https://hire-ai-backend-wcrk.onrender.com/api/v1/analytics/users/${session.user.email}/candidates/summary`)
           const totalCandidatesRes = await totalCandidatesReq.json()
           setTotalCan(totalCandidatesRes.total_candidates)
 
