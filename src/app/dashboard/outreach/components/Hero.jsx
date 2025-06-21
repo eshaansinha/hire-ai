@@ -22,7 +22,7 @@ const Hero = () => {
       if (status === "authenticated" && session?.user?.email) {
         const fetchCandidates = async () => {
           try {
-            const response = await fetch('https://hire-ai-backend-wcrk.onrender.com/api/candidates', {
+            const response = await fetch('https://hire-ai-backend-wcrk.onrender.com/api/candidates/', {
               method : "GET",
               headers: {
               "Accept": "application/json",
@@ -59,7 +59,7 @@ const Hero = () => {
 
         fetchCampaigns();
       }
-    }, [status, session]);
+    }, [status, session, launch]);
 
   if (status === "loading") {
           return (
@@ -264,7 +264,7 @@ recruiter_name</p></div>
                     <h1 className='text-gray-300 font-extrabold text-3xl'>Active Campaigns</h1>
                     <h1 className='text-gray-300 font-bold text-xl'>(Select a template to activate the campaign)</h1>
                   </div>
-                    <div className='flex gap-4'>
+                    <div className='grid grid-cols-3 gap-4'>
                       {campaigns.length > 0 ? (
                         campaigns.map(campaign => (
                           <div key={campaign.id} className='flex flex-col gap-3 mt-5 bg-gray-300 rounded-2xl p-5 w-fit'>

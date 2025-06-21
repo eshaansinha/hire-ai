@@ -61,18 +61,21 @@ const Hero = () => {
       // alert(JSON.stringify(result))
 
       if (!response.ok) {
-        // Handle validation errors (422) or other server errors
         const errorMessage = result.detail?.[0]?.msg || JSON.stringify(result.detail) || "An unknown error occurred.";
         throw new Error(errorMessage);
       }
-      
-      // **Process the successful (200) response based on the new schema**
-      const candidate = result.candidate;
+
+      const candidate = result;
+      if (!candidate) {
+        throw new Error("Resume parsing failed. Candidate data not found.");
+      }
+
       const { name, email, phone, skills, experience_years, location } = candidate;
 
       const formattedResult = `Name: ${name || "N/A"} | Email: ${email || "N/A"} | Phone: ${phone || "N/A"} | Location: ${location || "N/A"} | Experience: ${experience_years || "0"} years | Skills: ${Array.isArray(skills) ? skills.join(', ') : "N/A"}`;
 
       setParsingResult(formattedResult);
+
 
     } catch (err) {
       setError(err.message);
